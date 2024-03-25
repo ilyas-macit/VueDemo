@@ -1,0 +1,62 @@
+﻿<div id="app" class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card mt-4">
+        <div class="card-header">
+          Shopping Cart
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" v-for="product in products" :key="product.id">
+            <div class="row">
+              <div class="col">
+                <strong>{{ product.name }}</strong><br>
+                Price: {{ product.price }}<br>
+                Tags:
+                <ul>
+                  <li v-for="tag in product.tags">{{ tag }}</li>
+                </ul>
+              </div>
+              <div class="col-1">
+                <button class="btn btn-danger" v-on:click="deleteProduct(product.id)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <HelloWorld></HelloWorld>
+  <div class="row mt-4">
+    <div class="col-md-6 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          Add Product
+        </div>
+        <div class="card-body">
+          <form v-on:submit.prevent="addProduct">
+            <div class="form-group">
+              <label for="productName">Name</label>
+              <input type="text" class="form-control" id="productName" v-model="newProduct.name">
+            </div>
+            <div class="form-group">
+              <label for="productPrice">Price</label>
+              <input type="number" class="form-control" id="productPrice" v-model="newProduct.price">
+            </div>
+            <div class="form-group">
+              <label for="productTags">Tags</label>
+              <input type="text" class="form-control" id="productTags" v-model="newProduct.tagsString">
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+
+  <script src="~/js/product.js"></script>
+}
